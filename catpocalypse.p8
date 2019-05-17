@@ -2,18 +2,25 @@ pico-8 cartridge // http://www.pico-8.com
 version 18
 __lua__
 c={}
+g={1,2,0,3}g[8]=4
+t={"⬅️ schrodinger box: ","➡️ cat generator: ","⬆️ \"lost\" poster: ","⬇️ mega-click: "}
+m=1
 d=0
-l=0
 n=0
-p=10
+p={100,1000,10,50}
+q={2,4,1,0}
+r={0,0,0,1}
+s=3
 ::_::
 n+=d/30
 b=a
+u=g[btn()]
+if(u)s=u
 a=btn(4)
-if(a and a!=b)n+=1
-if(btn(5) and #c>=p)n-=p d+=1 p=flr(p*1.4) l+=1
+if(a and a!=b)n+=m
+if(btn(5) and #c>=p[s])n-=p[s] d+=q[s] m+=r[s] p[s]=flr(p[s]*1.4)
 while n<0 do
-del(c,c[1])
+del(c,c[#c])
 n+=1
 end
 while n>=1 do
@@ -24,9 +31,10 @@ cls(0)
 for e in all(c) do
 ?"🐱",e.x,e.y,e.c
 end
-?#c.."🐱 ",20,1,3
+?#c.."🐱",20,1,3
+?"🅾️="..m.."🐱",45,1,3
 ?d.."🐱/s",80,1,3
-?"🐱-maker cost: "..p.."🐱",20,122,3
+?t[s]..p[s].."🐱",20,122,3
 flip()
 goto _
 __gfx__
